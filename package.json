@@ -1,0 +1,17 @@
+{
+  "name": "qcobjects-microservice",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "description": "Awesome PWA application that will help you achieve your dreams.",
+  "main": "js/init.js",
+  "license": "LGPL-3.0-or-later",
+  "dependencies": {
+    "qcobjects": "^2.3.54",
+    "qcobjects-cli": "^2.3.31",
+    "qcobjects-handler-mockup": "0.0.14",
+    "qcobjects-handler-openapi": "0.0.11",
+    "qcobjects-sdk": "^2.3.23"
+  }
+}

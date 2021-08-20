@@ -1,0 +1,75 @@
+{
+  "devmode": "debug",
+  "cacheControl": "max-age=31536000",
+  "relativeImportPath": "js/packages/",
+  "serverPortHTTP": "8000",
+  "serverPortHTTPS": "8080",
+  "gmail_user": "$ENV(GMAIL_USER)",
+  "gmail_password": "$ENV(GMAIL_PASSWORD)",
+  "gmail_from": "$ENV(GMAIL_FROM)",
+  "gmail_to": "$ENV(GMAIL_TO)",
+  "newsletter_subject_user": "$ENV(NEWSLETTER_SUBJECT_USER)",
+  "newsletter_subject_backoffice": "$ENV(NEWSLETTER_SUBJECT_BACKOFFICE)",
+  "gmail_subject": "$ENV(GMAIL_SUBJECT)",
+  "mailchimp_api": [
+    "$MAILCHIMP_API(MAILCHIMP_API_KEY,MAILCHIMP_API_SERVER,MAILCHIMP_API_LIST)",
+    "$MAILCHIMP_API(MAILCHIMP_QCOBJECTSJOBS_APIKEY,MAILCHIMP_QCOBJECTSJOBS_SERVER,MAILCHIMP_QCOBJECTSJOBS_LIST)"
+  ],
+  "backend": {
+    "credentials": {
+      "apiKey": "$ENV(API_KEY)"
+    },
+    "routes": [{
+        "name": "OpenAPI3.JSON",
+        "description": "Open API v3 JSON",
+        "path": "^/openapi.json$",
+        "microservice": "com.qcobjects.backend.microservice.openapi.json"
+      },
+      {
+        "name": "OpenAPI3.YAML",
+        "description": "Open API v3 YAML",
+        "path": "^/openapi.yaml$",
+        "microservice": "com.qcobjects.backend.microservice.openapi.yaml"
+      },
+      {
+        "name": "OAuth2 Token",
+        "description": "Get OAuth2 Token",
+        "path": "^/oauth/token$",
+        "microservice": "com.qcobjects.backend.microservice.mockup",
+        "supported_methods": ["POST"],
+        "responseHeaders": {
+          "Content-Type": "application/json"
+        },
+        "response": {
+          "access_token": "a1b2c3d4e5",
+          "expires_in": 3600,
+          "token_type": "Bearer"
+        }
+      },
+
+      {
+        "name": "Register Email",
+        "description": "Register an email",
+        "path": "^/register$",
+        "microservice": "com.qcobjects.backend.register",
+        "responseHeaders": {},
+        "cors": {
+          "allow_origins": "*"
+        }
+      },
+      {
+        "name": "QCObjects.js",
+        "description": "Redirection of QCObjects.js",
+        "path": "^/QCObjects.js$",
+        "microservice": "com.qcobjects.backend.microservice.static",
+        "redirect_to": "./node_modules/qcobjects/QCObjects.js",
+        "responseHeaders": {
+          "cache-control": "max-age=31536000"
+        },
+        "cors": {
+          "allow_origins": "*"
+        }
+      }
+    ]
+  }
+}

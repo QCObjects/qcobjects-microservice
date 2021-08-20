@@ -1,0 +1,1 @@
+require("qcobjects-handler-openapi");
